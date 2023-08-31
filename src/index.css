@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+:root {
+  --red: #f65261;
+  --grey: #424242;
+  --black: #232323;
+  --grey-light: #555555;
+  --white: #fff;
+}
+
 #counter-legacy {
   background-color: antiquewhite;
   padding: 1rem;

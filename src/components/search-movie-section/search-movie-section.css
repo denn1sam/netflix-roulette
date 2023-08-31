@@ -1,0 +1,23 @@
+.search-movie-section {
+  height: 100%;
+  max-height: 24rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../../public/movies-background.svg);
+  background-size: cover;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 3rem;
+  letter-spacing: 0.2rem;
+}
+
+.search-movie-block {
+  width: 75%;
+}

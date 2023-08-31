@@ -1,0 +1,8 @@
+.home-page {
+  background-color: var(--grey-light);
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
