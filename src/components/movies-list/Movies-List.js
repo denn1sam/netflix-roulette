@@ -2,6 +2,7 @@ import "./movies-list.css";
 
 import { FunctionalSection } from "../functional-section/Functional-Section";
 import { MovieCard } from "../movie-card/Movie-Card";
+import { MoviesFilteringSection } from "../movies-filtering-section/Movies-Filtering-Section";
 
 export function MoviesList() {
   const moviesList = [0, 1, 2, 3].map((id) => {
@@ -10,7 +11,8 @@ export function MoviesList() {
 
   return (
     <FunctionalSection className="movies-list">
-      Movies List
+      <MoviesFilteringSection></MoviesFilteringSection>
+
       <div className="movies-list-container">{moviesList}</div>
     </FunctionalSection>
   );
