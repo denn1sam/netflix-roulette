@@ -2,10 +2,9 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  background-color: var(--red);
-  max-width: 20rem;
+  background-color: var(--grey);
   padding: 1rem;
-  margin: 1rem;
+  margin: 1rem 0;
   border-radius: 6px;
 }
 
@@ -31,7 +30,9 @@
 .counter-button {
   cursor: pointer;
   padding: 1rem;
-  background-color: burlywood;
+  background-color: var(--red);
+  font-size: 1rem;
+  color: var(--white);
   border: none;
   width: 4rem;
   border-radius: 6px;
