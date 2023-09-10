@@ -1,9 +1,9 @@
 import "./search-movie-section.css";
-import { FunctionalSection } from "../functional-section/Functional-Section";
-import { SearchField } from "../search-field/Search-Field";
+import { FunctionalSection } from "../functional-section/FunctionalSection";
+import { SearchField } from "../search-field/SearchField";
 
 export function SearchMovieSection() {
-  function handleSearch(searchValue) {
+  function handleSearch(searchValue: string) {
     console.log(searchValue);
   }
 

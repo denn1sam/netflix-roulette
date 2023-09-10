@@ -1,6 +1,6 @@
 import "./home.css";
-import { SearchMovieSection } from "../../components/search-movie-section/Search-Movie-Section";
-import { MoviesList } from "../../components/movies-list/Movies-List";
+import { SearchMovieSection } from "../../components/search-movie-section/SearchMovieSection";
+import { MoviesList } from "../../components/movies-list/MoviesList";
 
 export function Home() {
   return (
