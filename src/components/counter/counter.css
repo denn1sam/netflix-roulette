@@ -1,0 +1,38 @@
+.card {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  background-color: var(--red);
+  max-width: 20rem;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 6px;
+}
+
+.card-title {
+  text-align: left;
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+}
+
+.counter-count {
+  text-align: left;
+}
+
+.counter-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.counter-button {
+  cursor: pointer;
+  padding: 1rem;
+  background-color: burlywood;
+  border: none;
+  width: 4rem;
+  border-radius: 6px;
+}
