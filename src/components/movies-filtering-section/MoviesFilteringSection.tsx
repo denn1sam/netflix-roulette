@@ -1,8 +1,8 @@
 import "./movies-filtering-section.css";
-import { GenresTabs } from "../genres-tabs/Genres-Tabs";
+import { GenresTabs } from "../genres-tabs/GenresTabs";
 
 export function MoviesFilteringSection() {
-  function handleOnSelect(genre) {
+  function handleOnSelect(genre: string) {
     console.log("selected genre:", genre);
   }
 

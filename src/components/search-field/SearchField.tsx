@@ -1,14 +1,18 @@
 import "./search-field.css";
 import { useState } from "react";
 
-export function SearchField({ onSearch }) {
+export function SearchField({
+  onSearch,
+}: {
+  onSearch: (search: string) => void;
+}) {
   const [searchValue, setSearchValue] = useState("");
 
-  function handleInputChange(event) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchValue(event.target.value);
   }
 
-  function handleKeyUpPress(event) {
+  function handleKeyUpPress(event: React.KeyboardEvent) {
     if (event.key === "Enter") {
       onSearch(searchValue);
     }
