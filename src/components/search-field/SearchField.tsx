@@ -3,10 +3,12 @@ import { useState } from "react";
 
 export function SearchField({
   onSearch,
+  initialSearch = "",
 }: {
   onSearch: (search: string) => void;
+  initialSearch?: string;
 }) {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(initialSearch);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchValue(event.target.value);
@@ -32,10 +34,12 @@ export function SearchField({
         value={searchValue}
         onChange={handleInputChange}
         onKeyUp={handleKeyUpPress}
+        data-testid="search-input"
       />
       <button
         className="search-button"
         type="submit"
+        data-testid="submit"
         onClick={handleSearchClick}
       >
         Search
