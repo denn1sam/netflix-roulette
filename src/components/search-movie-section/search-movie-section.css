@@ -1,7 +1,6 @@
 .search-movie-section {
-  height: 100%;
-  min-height: 23rem;
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

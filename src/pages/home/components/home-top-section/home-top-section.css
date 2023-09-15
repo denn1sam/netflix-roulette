@@ -1,0 +1,5 @@
+.home-top-section {
+  display: flex;
+  min-height: 23rem;
+  background-color: var(--black);
+}

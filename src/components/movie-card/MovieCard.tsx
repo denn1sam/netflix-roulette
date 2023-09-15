@@ -1,5 +1,5 @@
 import "./movie-card.css";
-import { MovieCardProps } from "./movie.model";
+import { MovieCardProps } from "./movie-card.model";
 
 export function MovieCard({
   movie,
@@ -9,21 +9,25 @@ export function MovieCard({
   function handleMenuClick(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) {
-    event.stopPropagation();
-    onMenuClick();
+    if (onMenuClick) {
+      event.stopPropagation();
+      onMenuClick();
+    }
   }
 
   return (
     <div className="movie-card" onClick={onDetailsClick}>
       <div className="image-container">
         <img className="image" src={movie.imageUrl} alt={movie.name} />
-        <div
-          className="more-menu-button"
-          role="button"
-          onClick={(event) => handleMenuClick(event)}
-        >
-          <div className="dots-menu"></div>
-        </div>
+        {onMenuClick && (
+          <div
+            className="more-menu-button"
+            role="button"
+            onClick={(event) => handleMenuClick(event)}
+          >
+            <div className="dots-menu"></div>
+          </div>
+        )}
       </div>
       <div className="description-container">
         <div>
