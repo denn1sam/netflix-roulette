@@ -1,7 +1,13 @@
 .movie-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1;
   min-width: 10rem;
   min-height: 30rem;
+  height: 100%;
+  max-height: 30rem;
+  cursor: pointer;
 }
 
 .movie-card:hover .more-menu-button {
@@ -54,7 +60,7 @@
 
 .movie-year {
   display: block;
-  height: 100%;
+  height: 1.2rem;
   font-size: 0.9rem;
   border: 1px solid var(--grey-light);
   padding: 0.4rem 1rem;
