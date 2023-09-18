@@ -1,0 +1,45 @@
+.select-field {
+  font-size: 1rem;
+  display: flex;
+  text-transform: uppercase;
+  padding: 0.9rem;
+  letter-spacing: 0.1rem;
+}
+
+.select-field-selection {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.select-field-arrow-down {
+  transform: rotate(90deg);
+  margin-left: 1rem;
+  color: var(--red);
+}
+
+.select-field-selection-list {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  padding: 1rem;
+  background-color: var(--grey);
+  width: 100%;
+  max-width: 15rem;
+  min-width: 12rem;
+  z-index: 2;
+}
+
+.select-field-label {
+  margin-right: 2rem;
+  opacity: 0.6;
+}
+
+.select-option {
+  padding: 1rem;
+  border-bottom: 1px solid var(--red);
+}
+
+.select-option:hover {
+  background-color: var(--light-grey);
+}
