@@ -1,6 +1,5 @@
 import React from "react";
 
-export interface FunctionalSectionModel {
-  children: React.JSX.Element[] | React.JSX.Element;
+export interface FunctionalSectionModel extends React.PropsWithChildren {
   className: string;
 }

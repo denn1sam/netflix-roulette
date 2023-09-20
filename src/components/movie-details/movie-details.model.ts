@@ -1,6 +1,5 @@
 import { MovieModel } from "../../models/movie.model";
 
-export interface MovieDetailsProps {
+export interface MovieDetailsProps extends React.PropsWithChildren {
   movie: MovieModel;
-  children?: React.JSX.Element;
 }
