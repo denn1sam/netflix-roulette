@@ -1,6 +1,7 @@
 import "./page-title.css";
 import { useState } from "react";
 import { AddEditMovieDialog } from "../add-edit-movie-dialog/AddEditMovieDialog";
+import { Logo } from "../logo/Logo";
 
 export function PageTitle() {
   const [isAddMovieOpen, setIsAddMovieOpen] = useState(false);
@@ -11,10 +12,7 @@ export function PageTitle() {
 
   return (
     <div className="page-title">
-      <div className="page-title-logo">
-        <span className="bold">netflix</span>
-        <span>roulette</span>
-      </div>
+      <Logo />
 
       <button
         className="transparent-button"

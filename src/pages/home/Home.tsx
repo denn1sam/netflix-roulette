@@ -6,6 +6,7 @@ import { MOVIES_LIST } from "./mocks/movies-list.mock";
 import { MovieModel } from "../../models";
 import { MovieDetails } from "../../components/movie-details/MovieDetails";
 import { useState } from "react";
+import { PageFooter } from "../../components/page-footer/PageFooter";
 
 export function Home() {
   const [selectedMovie, setSelectedMovie] = useState<MovieModel>();
@@ -17,14 +18,17 @@ export function Home() {
 
   return (
     <section className="home-page with-fluid-height">
-      <HomeTopSection>
-        {selectedMovie ? (
-          <MovieDetails movie={selectedMovie} />
-        ) : (
-          <SearchMovieSection />
-        )}
-      </HomeTopSection>
+      <div className="home-page-top-section">
+        <HomeTopSection>
+          {selectedMovie ? (
+            <MovieDetails movie={selectedMovie} />
+          ) : (
+            <SearchMovieSection />
+          )}
+        </HomeTopSection>
+      </div>
       <MoviesList movies={MOVIES_LIST} onMovieClick={handleOnMovieClick} />
+      <PageFooter />
     </section>
   );
 }

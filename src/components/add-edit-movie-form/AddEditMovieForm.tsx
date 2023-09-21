@@ -128,6 +128,7 @@ export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
           id="overview"
           name="overview"
           placeholder="Movie Description"
+          rows={7}
           value={formData.overview}
           onChange={handleChange}
         />
