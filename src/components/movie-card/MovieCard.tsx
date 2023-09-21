@@ -18,7 +18,7 @@ export function MovieCard({
   return (
     <div className="movie-card" onClick={onDetailsClick}>
       <div className="image-container">
-        <img className="image" src={movie.imageUrl} alt={movie.name} />
+        <img className="image" src={movie.poster_path} alt={movie.title} />
         {onMenuClick && (
           <div
             className="more-menu-button"
@@ -31,10 +31,10 @@ export function MovieCard({
       </div>
       <div className="description-container">
         <div>
-          <h4 className="movie-name">{movie.name}</h4>
-          <span className="movie-genre">{movie.genres.join(", ")}</span>
+          <h4 className="movie-name">{movie.title}</h4>
+          <span className="movie-genre">{(movie.genres || []).join(", ")}</span>
         </div>
-        <div className="movie-year">{movie.year}</div>
+        <div className="movie-year">{movie.release_date}</div>
       </div>
     </div>
   );

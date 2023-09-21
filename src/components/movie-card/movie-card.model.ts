@@ -1,4 +1,4 @@
-import { MovieModel } from "../../models/movie.model";
+import { MovieModel } from "../../models";
 
 export interface MovieCardProps extends React.PropsWithChildren {
   movie: MovieModel;

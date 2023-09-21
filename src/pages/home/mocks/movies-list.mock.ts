@@ -1,40 +1,41 @@
-import { MovieModel } from "../../../models/movie.model";
+import { GenresEnum, MovieModel } from "../../../models";
 
-export const moviesList: MovieModel[] = [
+export const MOVIES_LIST: MovieModel[] = [
   {
-    name: "cat gatchi muchi",
-    imageUrl: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
-    year: 1999,
-    genres: ["drama", "fantasy"],
-    description: `Cats, known for their independent and mysterious nature, have captivated human hearts for centuries. These enigmatic creatures exhibit a wide range of behaviors and personalities, from playful and affectionate to aloof and inscrutable.
+    title: "cat gatchi muchi",
+    poster_path: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
+    release_date: 1999,
+    genres: [GenresEnum.Comedy, GenresEnum.Documentary],
+    overview: `Cats, known for their independent and mysterious nature, have captivated human hearts for centuries. These enigmatic creatures exhibit a wide range of behaviors and personalities, from playful and affectionate to aloof and inscrutable.
     Cats are agile hunters, relying on their sharp senses to stalk prey silently. Their retractable claws and keen eyesight make them formidable predators. Yet, at home, they transform into cuddly companions, often purring contentedly as they curl up in your lap.
     These feline friends come in various breeds, each with its own unique characteristics and quirks. From the elegant Siamese to the fluffy Maine Coon, there's a cat for every preference.
     Cats also possess an innate sense of curiosity, often exploring their surroundings with an insatiable appetite for adventure. Their love for cardboard boxes and laser pointers is well-documented, providing endless amusement for their human counterparts.`,
-    rate: "9.8",
-    duration: "2h 38min",
+    vote_average: 9,
+    runtime: 125,
     id: "1",
   },
   {
-    name: "2 cats looking on you",
-    imageUrl: "https://cdn2.thecatapi.com/images/H_UWbOfra.jpg",
-    year: 2220,
-    genres: ["sraka", "motyka"],
-    description: `Cats, known for their independent and mysterious nature, have captivated human hearts for centuries. These enigmatic creatures exhibit a wide range of behaviors and personalities, from playful and affectionate to aloof and inscrutable.
+    title: "2 cats looking on you",
+    poster_path: "https://cdn2.thecatapi.com/images/H_UWbOfra.jpg",
+    release_date: 2220,
+    genres: [GenresEnum.Crime, GenresEnum.Horror],
+    overview: `Cats, known for their independent and mysterious nature, have captivated human hearts for centuries. These enigmatic creatures exhibit a wide range of behaviors and personalities, from playful and affectionate to aloof and inscrutable.
     Cats also possess an innate sense of curiosity, often exploring their surroundings with an insatiable appetite for adventure. Their love for cardboard boxes and laser pointers is well-documented, providing endless amusement for their human counterparts.`,
-    rate: "7.8",
-    duration: "12h 19min",
-    id: "12",
+    vote_average: 7,
+    runtime: 50,
+    id: "2",
   },
   {
-    name: "cat thief",
-    imageUrl: "https://25.media.tumblr.com/tumblr_m1yuqjfdy31qejbiro1_500.jpg",
-    year: 2004,
-    genres: ["bachok", "potik"],
-    description: `Cats, known for their independent and mysterious nature, have captivated human hearts for centuries. These enigmatic creatures exhibit a wide range of behaviors and personalities, from playful and affectionate to aloof and inscrutable.
+    title: "cat thief",
+    poster_path:
+      "https://25.media.tumblr.com/tumblr_m1yuqjfdy31qejbiro1_500.jpg",
+    release_date: 2004,
+    genres: [GenresEnum.Comedy],
+    overview: `Cats, known for their independent and mysterious nature, have captivated human hearts for centuries. These enigmatic creatures exhibit a wide range of behaviors and personalities, from playful and affectionate to aloof and inscrutable.
     Cats are agile hunters, relying on their sharp senses to stalk prey silently. Their retractable claws and keen eyesight make them formidable predators. Yet, at home, they transform into cuddly companions, often purring contentedly as they curl up in your lap.
     Cats also possess an innate sense of curiosity, often exploring their surroundings with an insatiable appetite for adventure. Their love for cardboard boxes and laser pointers is well-documented, providing endless amusement for their human counterparts.`,
-    rate: "2.8",
-    duration: "1h",
-    id: "13",
+    vote_average: 2,
+    runtime: 60,
+    id: "3",
   },
 ];

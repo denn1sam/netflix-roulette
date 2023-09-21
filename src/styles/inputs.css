@@ -9,6 +9,11 @@ select {
   color: var(--white);
 }
 
+input[type="checkbox"] {
+  accent-color: var(--red);
+  background-color: var(--red);
+}
+
 input:focus {
   outline: none;
 }

@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/react";
 import { MovieDetails } from "../components/movie-details/MovieDetails";
-import { moviesList } from "../pages/home/mocks/movies-list.mock";
+import { MOVIES_LIST } from "../pages/home/mocks/movies-list.mock";
 import { MovieDetailsProps } from "../components/movie-details/movie-details.model";
 import { MovieCard } from "../components/movie-card/MovieCard";
 
@@ -14,7 +14,7 @@ export const Default = (args: MovieDetailsProps) => {
     <div
       style={{ maxWidth: "300px", maxHeight: "300px", backgroundColor: "grey" }}
     >
-      <MovieCard {...args} movie={moviesList[0]} />
+      <MovieCard {...args} movie={MOVIES_LIST[0]} />
     </div>
   );
 };

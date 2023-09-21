@@ -1,17 +1,29 @@
 import "./add-edit-movie-form.css";
 import { AddEditMovieFormProps } from "./add-edit-movie-form-props.interface";
 import { FormEvent, useState } from "react";
+import { SelectInput } from "../select-input/SelectInput";
+import {
+  GENRES_LIST,
+  INITIAL_FORM_STATE,
+} from "./add-edit-movie-form.constants";
+import { MovieModel } from "../../models";
+import { MovieFormModel } from "./add-edit-movie-form.interface";
 
 export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
-  const [formData, setFormData] = useState({
-    title: "",
-    releaseDate: "",
-    movieUrl: "",
-    rating: undefined,
-    genre: "drama",
-    runtime: "",
-    overview: "",
-  });
+  function mapMovieToFormState(movie: MovieModel = {}): MovieFormModel {
+    return {
+      ...movie,
+      genres: GENRES_LIST.filter((genre) =>
+        (movie.genres ?? []).includes(genre.value)
+      ),
+    };
+  }
+
+  const initialFormState = mapMovieToFormState(movie) || {
+    ...INITIAL_FORM_STATE,
+  };
+
+  const [formData, setFormData] = useState({ ...initialFormState });
 
   function handleChange(event: any) {
     const { name, value } = event.target;
@@ -27,6 +39,10 @@ export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
     event.preventDefault();
 
     console.log(formData);
+  }
+
+  function handleOnReset() {
+    setFormData({ ...INITIAL_FORM_STATE });
   }
 
   return (
@@ -49,9 +65,9 @@ export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
         <input
           type="date"
           id="releaseDate"
-          name="releaseDate"
+          name="release_date"
           placeholder="Select Date"
-          value={formData.releaseDate}
+          value={formData.release_date}
           onChange={handleChange}
         />
       </div>
@@ -61,9 +77,9 @@ export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
         <input
           type="text"
           id="movieUrl"
-          name="movieUrl"
+          name="poster_path"
           placeholder="https://"
-          value={formData.movieUrl}
+          value={formData.poster_path}
           onChange={handleChange}
         />
       </div>
@@ -73,31 +89,31 @@ export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
         <input
           type="number"
           id="rating"
-          name="rating"
+          name="vote_average"
           placeholder="0.0"
-          value={formData.rating}
+          max={10}
+          min={0}
+          value={formData.vote_average}
           onChange={handleChange}
         />
       </div>
 
       <div className="form-field">
         <label htmlFor="genre">Genre</label>
-        <select
-          id="genre"
-          name="genre"
+        <SelectInput
           placeholder="Select Genre"
-          value={formData.genre}
-          onChange={handleChange}
-        >
-          <option value="drama">Drama</option>
-          <option value="comedy">Comedy</option>
-        </select>
+          options={GENRES_LIST}
+          selectedOptions={formData.genres}
+          onSelectionChange={(selectedOptions) =>
+            handleChange({ target: { name: "genres", value: selectedOptions } })
+          }
+        />
       </div>
 
       <div className="form-field">
         <label htmlFor="runtime">Runtime</label>
         <input
-          type="text"
+          type="number"
           id="runtime"
           name="runtime"
           placeholder="Minutes"
@@ -118,7 +134,11 @@ export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
       </div>
 
       <div className="movie-form-actions">
-        <button type="button" className="stroked-button">
+        <button
+          type="button"
+          className="stroked-button"
+          onClick={handleOnReset}
+        >
           Reset
         </button>
         <button type="submit" className="flat-button">
