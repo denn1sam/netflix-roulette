@@ -30,7 +30,9 @@ export function MovieDetails({ movie }: MovieDetailsProps) {
           {(movie.genres ?? []).join(" & ")}
         </p>
         <div className="movie-details-year-with-duration">
-          <span className="movie-details-year">{movie.release_date}</span>
+          <span className="movie-details-year">
+            {new Date(movie.release_date as string).getFullYear()}
+          </span>
           <span className="movie-details-duration">
             {getTime(movie.runtime)}
           </span>

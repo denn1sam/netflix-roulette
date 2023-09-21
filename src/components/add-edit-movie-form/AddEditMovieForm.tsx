@@ -105,7 +105,9 @@ export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
           options={GENRES_LIST}
           selectedOptions={formData.genres}
           onSelectionChange={(selectedOptions) =>
-            handleChange({ target: { name: "genres", value: selectedOptions } })
+            handleChange({
+              target: { name: "genres", value: selectedOptions },
+            })
           }
         />
       </div>

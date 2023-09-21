@@ -4,7 +4,7 @@ export const MOVIES_LIST: MovieModel[] = [
   {
     title: "cat gatchi muchi",
     poster_path: "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
-    release_date: 1999,
+    release_date: "2023-09-16",
     genres: [GenresEnum.Comedy, GenresEnum.Documentary],
     overview: `Cats, known for their independent and mysterious nature, have captivated human hearts for centuries. These enigmatic creatures exhibit a wide range of behaviors and personalities, from playful and affectionate to aloof and inscrutable.
     Cats are agile hunters, relying on their sharp senses to stalk prey silently. Their retractable claws and keen eyesight make them formidable predators. Yet, at home, they transform into cuddly companions, often purring contentedly as they curl up in your lap.
@@ -17,7 +17,7 @@ export const MOVIES_LIST: MovieModel[] = [
   {
     title: "2 cats looking on you",
     poster_path: "https://cdn2.thecatapi.com/images/H_UWbOfra.jpg",
-    release_date: 2220,
+    release_date: "2012-02-16",
     genres: [GenresEnum.Crime, GenresEnum.Horror],
     overview: `Cats, known for their independent and mysterious nature, have captivated human hearts for centuries. These enigmatic creatures exhibit a wide range of behaviors and personalities, from playful and affectionate to aloof and inscrutable.
     Cats also possess an innate sense of curiosity, often exploring their surroundings with an insatiable appetite for adventure. Their love for cardboard boxes and laser pointers is well-documented, providing endless amusement for their human counterparts.`,
@@ -29,7 +29,7 @@ export const MOVIES_LIST: MovieModel[] = [
     title: "cat thief",
     poster_path:
       "https://25.media.tumblr.com/tumblr_m1yuqjfdy31qejbiro1_500.jpg",
-    release_date: 2004,
+    release_date: "1999-09-16",
     genres: [GenresEnum.Comedy],
     overview: `Cats, known for their independent and mysterious nature, have captivated human hearts for centuries. These enigmatic creatures exhibit a wide range of behaviors and personalities, from playful and affectionate to aloof and inscrutable.
     Cats are agile hunters, relying on their sharp senses to stalk prey silently. Their retractable claws and keen eyesight make them formidable predators. Yet, at home, they transform into cuddly companions, often purring contentedly as they curl up in your lap.
