@@ -1,0 +1,27 @@
+input,
+textarea,
+select {
+  background-color: var(--grey);
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1.25rem;
+  color: var(--white);
+}
+
+input:focus {
+  outline: none;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.7rem;
+}
+
+.form-field label {
+  color: var(--red);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}

@@ -1,0 +1,17 @@
+.movie-form {
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  grid-auto-rows: auto;
+  gap: 2rem;
+}
+
+.movie-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 1rem;
+}
+
+.overview-field,
+.movie-form-actions {
+  grid-column: span 2;
+}

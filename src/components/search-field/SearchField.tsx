@@ -37,7 +37,7 @@ export function SearchField({
         data-testid="search-input"
       />
       <button
-        className="search-button"
+        className="search-button flat-button"
         type="submit"
         data-testid="submit"
         onClick={handleSearchClick}

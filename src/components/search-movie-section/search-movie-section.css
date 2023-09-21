@@ -13,10 +13,12 @@
   font-weight: 300;
   text-transform: uppercase;
   text-align: left;
+  margin-top: 5rem;
   margin-bottom: 3rem;
   letter-spacing: 0.2rem;
 }
 
 .search-movie-block {
   width: 75%;
+  height: 100%;
 }
