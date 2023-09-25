@@ -1,0 +1,43 @@
+.dialog-backdrop {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.dialog {
+  z-index: 12;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--black);
+  min-width: 30rem;
+  padding: 1rem 3rem 4rem;
+  color: var(--white);
+}
+
+.dialog-title {
+  font-size: 2.5rem;
+  font-weight: 200;
+  letter-spacing: 0.3rem;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.dialog-header {
+  width: 100%;
+}
+
+.dialog-close-button-wrapper {
+  text-align: right;
+}
+
+.dialog-close-button {
+  text-align: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

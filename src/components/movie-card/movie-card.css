@@ -36,7 +36,6 @@
   top: 0.5rem;
   right: 0.5rem;
   border-radius: 100%;
-  opacity: 0.9;
   width: 44px;
   height: 44px;
   background-image: url(../../../public/dots-menu.svg);
@@ -66,4 +65,28 @@
   padding: 0.4rem 1rem;
   border-radius: 6px;
   opacity: 0.8;
+}
+
+.dots-menu {
+  position: relative;
+}
+
+.card-menu {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 10rem;
+  border-radius: 6px;
+  padding: 0.8rem 0;
+  background-color: var(--black);
+}
+
+.menu-item {
+  font-size: 1rem;
+  padding: 1rem 2rem;
+}
+
+.menu-item:hover {
+  background-color: var(--red);
+  cursor: pointer;
 }

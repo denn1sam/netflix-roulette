@@ -3,7 +3,7 @@ import "./movies-list.css";
 import { FunctionalSection } from "../functional-section/FunctionalSection";
 import { MovieCard } from "../movie-card/MovieCard";
 import { MoviesFilteringSection } from "../movies-filtering-section/MoviesFilteringSection";
-import { MovieModel } from "../../models/movie.model";
+import { MovieModel } from "../../models";
 import { MoviesListProps } from "./movies-list.model";
 
 export function MoviesList({ movies, onMovieClick }: MoviesListProps) {

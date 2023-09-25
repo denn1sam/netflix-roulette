@@ -1,8 +1,7 @@
-import { MovieModel } from "../../models/movie.model";
+import { MovieModel } from "../../models";
 
-export interface MovieCardProps {
+export interface MovieCardProps extends React.PropsWithChildren {
   movie: MovieModel;
-  children?: React.JSX.Element;
   onMenuClick?: () => void;
   onDetailsClick?: () => void;
 }

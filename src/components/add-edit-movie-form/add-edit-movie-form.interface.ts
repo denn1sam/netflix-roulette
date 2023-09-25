@@ -1,4 +1,6 @@
-export interface MovieModel {
+import { SelectOption } from "../select-input/select-input.interface";
+
+export interface MovieFormModel {
   title?: string;
   tagline?: string;
   vote_average?: number;
@@ -8,7 +10,7 @@ export interface MovieModel {
   overview?: string;
   budget?: number;
   revenue?: number;
-  genres?: string[];
+  genres?: SelectOption[];
   runtime?: number;
   id?: string;
 }

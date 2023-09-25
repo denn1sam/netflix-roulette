@@ -23,6 +23,7 @@
   opacity: 0.4;
   color: var(--white);
   letter-spacing: 0.05rem;
+  font-size: 1.2rem;
   font-weight: 300;
 }
 
@@ -32,12 +33,14 @@
 }
 
 .movie-details-rate {
-  display: flex;
-  align-items: center;
+  text-align: center;
   margin-left: 1rem;
   padding: 0.8rem;
   border: 1px solid var(--white);
-  border-radius: 100%;
+  border-radius: 50%;
+  width: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 1.4rem;
 }
 
 .movie-details-name {
