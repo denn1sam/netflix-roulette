@@ -1,33 +1,20 @@
 import "./movies-filtering-section.css";
 import { GenresTabs } from "../genres-tabs/GenresTabs";
-import { useState } from "react";
-import { SelectedValue } from "../select-field/select-field.model";
 import { SelectField } from "../select-field/SelectField";
+import { SORT_OPTIONS, useAppContext } from "../../context/AppContext";
 
-const SELECTED_OPTIONS: SelectedValue[] = [
-  { label: "Release Date", value: "releaseDate" },
-  { label: "Title", value: "title" },
-];
 
 export function MoviesFilteringSection() {
-  const [selectedSorting, setSelectedSorting] = useState(SELECTED_OPTIONS[0]);
-
-  function handleOnSelect(genre: string) {
-    console.log("selected genre:", genre);
-  }
-
-  function handleOnSelectedValueChanges(selectedSorting: SelectedValue) {
-    setSelectedSorting(selectedSorting);
-  }
+  const { selectedSorting, handleSortChange } = useAppContext();
 
   return (
     <div className="movies-filtering-section">
-      <GenresTabs onSelect={handleOnSelect}></GenresTabs>
+      <GenresTabs></GenresTabs>
       <SelectField
         label="Sort By"
-        selectOptions={SELECTED_OPTIONS}
+        selectOptions={SORT_OPTIONS}
         selectedValue={selectedSorting}
-        onSelectedValueChanges={handleOnSelectedValueChanges}
+        onSelectedValueChanges={handleSortChange}
       ></SelectField>
     </div>
   );

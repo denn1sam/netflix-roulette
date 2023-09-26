@@ -11,7 +11,7 @@ export function AddEditMovieDialog({
     <Dialog
       title={movie ? "Edit Movie" : "Add Movie"}
       isOpen={isOpen}
-      onClose={() => onClose()}
+      onClose={onClose}
     >
       <AddEditMovieForm movie={movie}></AddEditMovieForm>
     </Dialog>

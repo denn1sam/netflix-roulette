@@ -2,7 +2,6 @@ import "./home.css";
 import { SearchMovieSection } from "../../components/search-movie-section/SearchMovieSection";
 import { MoviesList } from "../../components/movies-list/MoviesList";
 import { HomeTopSection } from "./components/home-top-section/HomeTopSection";
-import { MOVIES_LIST } from "./mocks/movies-list.mock";
 import { MovieModel } from "../../models";
 import { MovieDetails } from "../../components/movie-details/MovieDetails";
 import { useState } from "react";
@@ -27,7 +26,7 @@ export function Home() {
           )}
         </HomeTopSection>
       </div>
-      <MoviesList movies={MOVIES_LIST} onMovieClick={handleOnMovieClick} />
+      <MoviesList onMovieClick={handleOnMovieClick} />
       <PageFooter />
     </section>
   );
