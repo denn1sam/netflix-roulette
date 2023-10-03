@@ -1,20 +1,20 @@
 import "./genres-tabs.css";
-import { useState } from "react";
-
-const basicGenres = ["all", "documentary", "comedy", "horror", "crime"];
+import { GENRES_OPTIONS, useAppContext } from "../../context/AppContext";
 
 export function GenresTabs({
   onSelect,
-  genres = basicGenres,
+  genres = GENRES_OPTIONS,
 }: {
-  onSelect: (genre: string) => void;
+  onSelect?: (genre: string) => void;
   genres?: string[];
 }) {
-  const [selectedGenre, setSelectedGenre] = useState(genres[0]);
+  const { selectedGenre, handleGenreChange } = useAppContext();
 
   function handleOnSelect(genre: string) {
-    setSelectedGenre(genre);
-    onSelect(genre);
+    handleGenreChange(genre);
+    if (onSelect) {
+      onSelect(genre);
+    }
   }
 
   const genresTabs = genres.map((genre) => (

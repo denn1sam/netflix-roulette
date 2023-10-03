@@ -5,8 +5,11 @@ import { MovieCard } from "../movie-card/MovieCard";
 import { MoviesFilteringSection } from "../movies-filtering-section/MoviesFilteringSection";
 import { MovieModel } from "../../models";
 import { MoviesListProps } from "./movies-list.model";
+import { useAppContext } from "../../context/AppContext";
 
-export function MoviesList({ movies, onMovieClick }: MoviesListProps) {
+export function MoviesList({ onMovieClick }: MoviesListProps) {
+  const { moviesList } = useAppContext();
+
   function handleMenuClick(movie: MovieModel): void {
     console.log("handleMenuClick", movie);
   }
@@ -16,7 +19,7 @@ export function MoviesList({ movies, onMovieClick }: MoviesListProps) {
     onMovieClick(movie);
   }
 
-  const moviesList = movies.map((movie) => {
+  const renderMoviesList = moviesList.map((movie) => {
     return (
       <MovieCard
         key={movie.id}
@@ -31,7 +34,13 @@ export function MoviesList({ movies, onMovieClick }: MoviesListProps) {
     <FunctionalSection className="movies-list">
       <MoviesFilteringSection></MoviesFilteringSection>
 
-      <div className="movies-list-container">{moviesList}</div>
+      <div className="movies-list-container">
+        {moviesList?.length ? (
+          renderMoviesList
+        ) : (
+          <h3>Whoops! No movies found</h3>
+        )}
+      </div>
     </FunctionalSection>
   );
 }

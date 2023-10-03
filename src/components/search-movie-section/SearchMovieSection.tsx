@@ -2,16 +2,19 @@ import "./search-movie-section.css";
 import { FunctionalSection } from "../functional-section/FunctionalSection";
 import { SearchField } from "../search-field/SearchField";
 import { PageTitle } from "../page-title/PageTitle";
+import { useAppContext } from "../../context/AppContext";
 
 export function SearchMovieSection() {
+  const { handleSearchChange } = useAppContext();
+
   function handleSearch(searchValue: string) {
-    console.log(searchValue);
+    handleSearchChange(searchValue);
   }
 
   return (
     <FunctionalSection className="search-movie-section">
       <div className="search-movie-block">
-        <PageTitle />
+        <PageTitle isDetailsView={false} />
         <h2 className="title">Find your movie</h2>
 
         <SearchField onSearch={handleSearch} />
