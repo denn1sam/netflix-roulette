@@ -10,7 +10,7 @@ import { PageFooter } from "../../components/page-footer/PageFooter";
 export function Home() {
   const [selectedMovie, setSelectedMovie] = useState<MovieModel>();
 
-  function handleOnMovieClick(movie: MovieModel): void {
+  function handleOnMovieClick(movie?: MovieModel): void {
     console.log(movie);
     setSelectedMovie(movie);
   }
@@ -20,7 +20,10 @@ export function Home() {
       <div className="home-page-top-section">
         <HomeTopSection>
           {selectedMovie ? (
-            <MovieDetails movie={selectedMovie} />
+            <MovieDetails
+              movie={selectedMovie}
+              onBackToSearch={() => handleOnMovieClick(undefined)}
+            />
           ) : (
             <SearchMovieSection />
           )}

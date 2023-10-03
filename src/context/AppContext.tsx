@@ -1,7 +1,13 @@
-import React, { FC, createContext, useContext, useEffect, useState } from "react";
+import React, {
+  FC,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { SelectedValue } from "../components/select-field/select-field.model";
-import { MovieModel } from "../models";
-import { MOVIES_LIST } from "../pages/home/mocks/movies-list.mock";
+import { GenresEnum, MovieModel } from "../models";
+import { MoviesApiService } from "../services/movies-api.service";
 
 export interface AppContextState {
   moviesList: MovieModel[];
@@ -9,9 +15,10 @@ export interface AppContextState {
   selectedSorting: SelectedValue;
   handleSortChange(prop: SelectedValue): void;
   handleGenreChange(prop: string): void;
+  handleSearchChange(prop: string): void;
 }
 
-export const GENRES_OPTIONS = ["all", "documentary", "comedy", "horror", "crime"];
+export const GENRES_OPTIONS = Object.values(GenresEnum);
 
 export const SORT_OPTIONS: SelectedValue[] = [
   { label: "Release Date", value: "release_date" },
@@ -20,45 +27,51 @@ export const SORT_OPTIONS: SelectedValue[] = [
 
 const AppContext = createContext<AppContextState>({} as AppContextState);
 
-export const AppContextProvider: FC<React.PropsWithChildren> = ({ children }) => {
+export const AppContextProvider: FC<React.PropsWithChildren> = ({
+  children,
+}) => {
+  const [searchValue, setSearchValue] = useState("");
   const [moviesList, setMoviesList] = useState<MovieModel[]>([]);
   const [selectedGenre, setSelectedGenre] = useState(GENRES_OPTIONS[0]);
-  const [selectedSorting, setSelectedSorting] = useState<SelectedValue>(SORT_OPTIONS[0]);
+  const [selectedSorting, setSelectedSorting] = useState<SelectedValue>(
+    SORT_OPTIONS[0]
+  );
 
-  const handleGenreChange = (newValue: string) => setSelectedGenre(newValue);
+  const handleSearchChange = (newValue: string) => setSearchValue(newValue);
 
-  const handleSortChange = (newValue: SelectedValue) => setSelectedSorting(newValue);
+  const handleGenreChange = (newValue: GenresEnum) =>
+    setSelectedGenre(newValue);
 
-  const sortGenreCompare = (a: MovieModel, b: MovieModel): number => {
-    if (selectedSorting.value === 'title') {
-      return (b.title || '').localeCompare(a.title || '');
-    } else {
-      return new Date(b.release_date || '').getTime() - new Date(a.release_date || '').getTime();
-    }
-  }
+  const handleSortChange = (newValue: SelectedValue) =>
+    setSelectedSorting(newValue);
 
   useEffect(() => {
-    const movies = structuredClone(MOVIES_LIST);
+    async function getMovies() {
+      const moviesResponse = await MoviesApiService.get({
+        search: searchValue,
+        filter: [selectedGenre],
+        sortBy: selectedSorting.value,
+      });
 
-    if (selectedGenre === 'all') {
-      return setMoviesList(movies.sort(sortGenreCompare));
+      const movies = moviesResponse.data || [];
+
+      return setMoviesList(movies);
     }
 
-    return setMoviesList(
-      movies
-        .filter(movie => (movie.genres || []).some(genre => genre === selectedGenre))
-        .sort(sortGenreCompare)
-    );
-  }, [selectedGenre, selectedSorting.value]);
+    getMovies();
+  }, [selectedGenre, selectedSorting.value, searchValue]);
 
   return (
-    <AppContext.Provider value={{
-      moviesList,
-      selectedGenre,
-      selectedSorting,
-      handleSortChange,
-      handleGenreChange,
-    }}>
+    <AppContext.Provider
+      value={{
+        moviesList,
+        selectedGenre,
+        selectedSorting,
+        handleSortChange,
+        handleGenreChange,
+        handleSearchChange,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

@@ -34,7 +34,13 @@ export function MoviesList({ onMovieClick }: MoviesListProps) {
     <FunctionalSection className="movies-list">
       <MoviesFilteringSection></MoviesFilteringSection>
 
-      <div className="movies-list-container">{renderMoviesList}</div>
+      <div className="movies-list-container">
+        {moviesList?.length ? (
+          renderMoviesList
+        ) : (
+          <h3>Whoops! No movies found</h3>
+        )}
+      </div>
     </FunctionalSection>
   );
 }
