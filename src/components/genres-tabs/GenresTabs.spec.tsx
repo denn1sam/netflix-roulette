@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { GenresTabs } from "./GenresTabs";
+import { AppContextProvider } from "../../context/AppContext";
 
 test("should display all passed genres", () => {
   const genres = ["genre1", "genre2", "genre3", "genre4"];
@@ -18,7 +18,11 @@ test("should check if tab of selected genre is highlighted", async () => {
   const selectedGenre = genres[2];
   const handleOnSelect = () => null;
 
-  render(<GenresTabs genres={genres} onSelect={handleOnSelect} />);
+  render(
+    <AppContextProvider>
+      <GenresTabs genres={genres} onSelect={handleOnSelect} />
+    </AppContextProvider>
+  );
 
   const selectedGenreTabElement = screen.getByTestId(selectedGenre);
 
@@ -32,7 +36,11 @@ test("should check if OnSelect is called with proper value on click on tab", asy
   const genres = ["genre1", "genre2", "genre3", "genre4"];
   const selectedGenre = genres[2];
 
-  render(<GenresTabs genres={genres} onSelect={handleOnSelect} />);
+  render(
+    <AppContextProvider>
+      <GenresTabs genres={genres} onSelect={handleOnSelect} />
+    </AppContextProvider>
+  );
 
   const selectedGenreTabElement = screen.getByTestId(selectedGenre);
 
