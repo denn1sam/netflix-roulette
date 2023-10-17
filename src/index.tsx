@@ -1,13 +1,47 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import ErrorPage from "./pages/error/ErrorPage";
+import { MovieDetailsWrapper } from "./components/movie-details-wrapper/MovieDetailsWrapper";
+import { SearchMovieSection } from "./components/search-movie-section/SearchMovieSection";
+import { MoviesApiService } from "./services/movies-api.service";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <SearchMovieSection />,
+      },
+      {
+        path: "/:movieId",
+        element: <MovieDetailsWrapper />,
+        loader: async ({ params }) => {
+          const selectedMovieDetails = await MoviesApiService.getById(
+            params.movieId!
+          );
+
+          return { selectedMovieDetails };
+        },
+      },
+    ],
+  },
+  {
+    path: "/*",
+    element: <ErrorPage />,
+  },
+]);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

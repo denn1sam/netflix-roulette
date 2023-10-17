@@ -32,4 +32,12 @@ export class MoviesApiService {
         data: [],
       }));
   }
+
+  public static async getById(id: string | number): Promise<GetMovieResponse> {
+    return fetch(`${this.API_DOMAIN}/movies/${id}`)
+      .then((response) => response.json())
+      .catch(() => ({
+        data: [],
+      }));
+  }
 }

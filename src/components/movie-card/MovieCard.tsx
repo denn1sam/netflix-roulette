@@ -3,15 +3,17 @@ import { useState } from "react";
 import { MovieCardProps } from "./movie-card.model";
 import { AddEditMovieDialog } from "../add-edit-movie-dialog/AddEditMovieDialog";
 import { DeleteMovieDialog } from "../delete-movie-dialog/DeleteMovieDialog";
+import { useNavigate } from "react-router-dom";
 
-export function MovieCard({
-  movie,
-  onMenuClick,
-  onDetailsClick,
-}: MovieCardProps) {
+export function MovieCard({ movie, onMenuClick }: MovieCardProps) {
+  const navigate = useNavigate();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [isEditMovieDialogOpen, setIsEditMovieDialogOpen] = useState(false);
   const [isDeleteMovieDialogOpen, setIsDeleteMovieDialogOpen] = useState(false);
+
+  function handleDetailsClick(movieId: string): void {
+    navigate(`/${movieId}`);
+  }
 
   function handleMenuClick(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -35,7 +37,7 @@ export function MovieCard({
     <>
       <div
         className="movie-card"
-        onClick={onDetailsClick}
+        onClick={() => handleDetailsClick(movie.id!)}
         onMouseLeave={() => setIsMenuOpened(false)}
       >
         <div className="image-container">
