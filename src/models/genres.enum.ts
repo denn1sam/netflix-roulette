@@ -4,7 +4,6 @@ export enum GenresEnum {
   Documentary = "Documentary",
   Horror = "Horror",
   Comedy = "Comedy",
-  ScienceFiction = "Science Fiction",
   Action = "Action",
   Adventure = "Adventure",
   Fantasy = "Fantasy",

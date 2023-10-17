@@ -5,7 +5,7 @@ import { PageTitle } from "../page-title/PageTitle";
 import { useAppContext } from "../../context/AppContext";
 
 export function SearchMovieSection() {
-  const { handleSearchChange } = useAppContext();
+  const { search, handleSearchChange } = useAppContext();
 
   function handleSearch(searchValue: string) {
     handleSearchChange(searchValue);
@@ -17,7 +17,7 @@ export function SearchMovieSection() {
         <PageTitle isDetailsView={false} />
         <h2 className="title">Find your movie</h2>
 
-        <SearchField onSearch={handleSearch} />
+        <SearchField onSearch={handleSearch} initialSearch={search} />
       </div>
     </FunctionalSection>
   );
