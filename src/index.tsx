@@ -8,6 +8,8 @@ import ErrorPage from "./pages/error/ErrorPage";
 import { MovieDetailsWrapper } from "./components/movie-details-wrapper/MovieDetailsWrapper";
 import { SearchMovieSection } from "./components/search-movie-section/SearchMovieSection";
 import { MoviesApiService } from "./services/movies-api.service";
+import { AddEditMovieDialogWrapper } from "./components/add-edit-movie-dialog-wrapper/AddEditMovieDialogWrapper";
+import { DeleteMovieDialogWrapper } from "./components/delete-movie-dialog-wrapper/DeleteMovieDialogWrapper";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element);
 const router = createBrowserRouter([
@@ -19,6 +21,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <SearchMovieSection />,
+        children: [
+          {
+            path: "new",
+            element: <AddEditMovieDialogWrapper />,
+          },
+        ],
       },
       {
         path: "/:movieId",
@@ -30,6 +38,23 @@ const router = createBrowserRouter([
 
           return { selectedMovieDetails };
         },
+        children: [
+          {
+            path: "edit",
+            element: <AddEditMovieDialogWrapper />,
+            loader: async ({ params }) => {
+              const selectedMovieDetails = await MoviesApiService.getById(
+                params.movieId!
+              );
+
+              return { selectedMovieDetails };
+            },
+          },
+          {
+            path: "delete",
+            element: <DeleteMovieDialogWrapper />,
+          },
+        ],
       },
     ],
   },

@@ -1,15 +1,11 @@
 import "./movie-card.css";
 import { useState } from "react";
 import { MovieCardProps } from "./movie-card.model";
-import { AddEditMovieDialog } from "../add-edit-movie-dialog/AddEditMovieDialog";
-import { DeleteMovieDialog } from "../delete-movie-dialog/DeleteMovieDialog";
 import { useNavigate } from "react-router-dom";
 
 export function MovieCard({ movie, onMenuClick }: MovieCardProps) {
   const navigate = useNavigate();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
-  const [isEditMovieDialogOpen, setIsEditMovieDialogOpen] = useState(false);
-  const [isDeleteMovieDialogOpen, setIsDeleteMovieDialogOpen] = useState(false);
 
   function handleDetailsClick(movieId: string): void {
     navigate(`/${movieId}`);
@@ -23,14 +19,6 @@ export function MovieCard({ movie, onMenuClick }: MovieCardProps) {
       setIsMenuOpened(true);
       onMenuClick();
     }
-  }
-
-  function handleDeleteDialogClose(isDeleteConfirmed: boolean) {
-    if (isDeleteConfirmed) {
-      console.log("Movie Deleted");
-    }
-
-    setIsDeleteMovieDialogOpen(false);
   }
 
   return (
@@ -54,14 +42,14 @@ export function MovieCard({ movie, onMenuClick }: MovieCardProps) {
                     <div
                       className="menu-item"
                       role="button"
-                      onClick={() => setIsEditMovieDialogOpen(true)}
+                      onClick={() => navigate(`/${movie.id}/edit`)}
                     >
                       Edit
                     </div>
                     <div
                       className="menu-item"
                       role="button"
-                      onClick={() => setIsDeleteMovieDialogOpen(true)}
+                      onClick={() => navigate(`/${movie.id}/delete`)}
                     >
                       Delete
                     </div>
@@ -83,17 +71,6 @@ export function MovieCard({ movie, onMenuClick }: MovieCardProps) {
           </div>
         </div>
       </div>
-
-      <AddEditMovieDialog
-        isOpen={isEditMovieDialogOpen}
-        movie={movie}
-        onClose={() => setIsEditMovieDialogOpen(false)}
-      />
-
-      <DeleteMovieDialog
-        isOpen={isDeleteMovieDialogOpen}
-        onClose={(isConfirmed) => handleDeleteDialogClose(isConfirmed)}
-      />
     </>
   );
 }
