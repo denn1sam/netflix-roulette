@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 export function MovieCard({ movie, onMenuClick }: MovieCardProps) {
   const navigate = useNavigate();
   const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const fallbackPosterSrc = 'http://via.placeholder.com/294x441';
 
-  function handleDetailsClick(movieId: string): void {
-    navigate(`/${movieId}`);
+  function handleDetailsClick(): void {
+    navigate(`/${movie.id!}`);
   }
 
   function handleMenuClick(
@@ -25,11 +26,16 @@ export function MovieCard({ movie, onMenuClick }: MovieCardProps) {
     <>
       <div
         className="movie-card"
-        onClick={() => handleDetailsClick(movie.id!)}
+        onClick={handleDetailsClick}
         onMouseLeave={() => setIsMenuOpened(false)}
       >
         <div className="image-container">
-          <img className="image" src={movie.poster_path} alt={movie.title} />
+          <img
+            className="image"
+            alt={movie.title}
+            src={movie.poster_path || fallbackPosterSrc}
+            onError={errorProps => (errorProps.target as HTMLImageElement).src = 'http://via.placeholder.com/294x441'}
+          />
           {onMenuClick && (
             <div
               className="more-menu-button"
