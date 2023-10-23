@@ -5,14 +5,13 @@ import { AddEditMovieDialogProps } from "./add-edit-movie-dialog-props.interface
 
 export function AddEditMovieDialog({
   movie,
-  isOpen,
   onClose,
 }: AddEditMovieDialogProps) {
   return (
     <Dialog
-      title={movie ? "Edit Movie" : "Add Movie"}
-      isOpen={isOpen}
+      isOpen
       onClose={() => onClose()}
+      title={movie ? "Edit Movie" : "Add Movie"}
     >
       <AddEditMovieForm
         movie={movie}

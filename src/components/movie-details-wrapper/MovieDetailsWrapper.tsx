@@ -9,15 +9,18 @@ export function MovieDetailsWrapper() {
     selectedMovieDetails: MovieModel;
   };
 
-  return selectedMovieDetails?.id ? (
-    <>
-      <MovieDetails movie={selectedMovieDetails} />
-      <Outlet />
-    </>
-  ) : (
-    <div className="not-found-section">
-      <PageTitle isDetailsView={true} />
+  if (selectedMovieDetails?.id) {
+    return (
+      <>
+        <MovieDetails movie={selectedMovieDetails} />
+        <Outlet />
+      </>
+    )
+  }
 
+  return (
+    <div className="not-found-section">
+      <PageTitle isDetailsView />
       <h2>Whoops! 404...</h2>
       <p>Movie not found</p>
     </div>
