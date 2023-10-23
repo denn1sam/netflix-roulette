@@ -1,5 +1,7 @@
+import { MovieModel } from "../../models";
+
 export interface AddEditMovieDialogProps {
   movie?: any;
   isOpen: boolean;
-  onClose: () => void;
+  onClose: (movie?: MovieModel) => MovieModel | void | Promise<void>;
 }

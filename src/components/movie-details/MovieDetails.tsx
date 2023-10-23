@@ -1,8 +1,8 @@
-import { PageTitle } from "../page-title/PageTitle";
 import "./movie-details.css";
+import { PageTitle } from "../page-title/PageTitle";
 import { MovieDetailsProps } from "./movie-details.model";
 
-export function MovieDetails({ movie, onBackToSearch }: MovieDetailsProps) {
+export function MovieDetails({ movie }: MovieDetailsProps) {
   function getTime(totalMinutes: number = 0) {
     const hours =
       totalMinutes / 60 >= 1 ? `${Math.floor(totalMinutes / 60)}h` : "";
@@ -13,13 +13,9 @@ export function MovieDetails({ movie, onBackToSearch }: MovieDetailsProps) {
     return [hours, minutes].join(" ");
   }
 
-  function handleMovieDetails(): void {
-    onBackToSearch();
-  }
-
   return (
     <div className="movie-details">
-      <PageTitle isDetailsView={true} onBackToSearch={handleMovieDetails} />
+      <PageTitle isDetailsView={true} />
 
       <div className="movie-details-wrapper">
         <div className="movie-details-image-container">

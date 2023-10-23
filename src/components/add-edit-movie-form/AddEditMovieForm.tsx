@@ -9,7 +9,7 @@ import {
 import { MovieModel } from "../../models";
 import { MovieFormModel } from "./add-edit-movie-form.interface";
 
-export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
+export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
   function mapMovieToFormState(movie: MovieModel = {}): MovieFormModel {
     return {
       ...movie,
@@ -27,7 +27,6 @@ export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
 
   function handleChange(event: any) {
     const { name, value } = event.target;
-    console.log(name, value);
 
     setFormData({
       ...formData,
@@ -39,6 +38,7 @@ export function AddEditMovieForm({ movie }: AddEditMovieFormProps) {
     event.preventDefault();
 
     console.log(formData);
+    submitForm(formData as MovieModel);
   }
 
   function handleOnReset() {

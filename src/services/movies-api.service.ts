@@ -1,5 +1,5 @@
 import { API_DOMAIN } from "../config/api-domain.config";
-import { GenresEnum } from "../models";
+import { GenresEnum, MovieModel } from "../models";
 import { GetMoviePayload, GetMovieResponse } from "./movies-api.interface";
 
 export class MoviesApiService {
@@ -27,6 +27,44 @@ export class MoviesApiService {
     });
 
     return fetch(`${this.API_DOMAIN}/movies?${urlSearchParams}`)
+      .then((response) => response.json())
+      .catch(() => ({
+        data: [],
+      }));
+  }
+
+  public static async getById(id: string | number): Promise<GetMovieResponse> {
+    return fetch(`${this.API_DOMAIN}/movies/${id}`)
+      .then((response) => response.json())
+      .catch(() => ({
+        data: [],
+      }));
+  }
+
+  public static async update(movie: MovieModel): Promise<GetMovieResponse> {
+    return fetch(`${this.API_DOMAIN}/movies`, {
+      method: "PUT",
+      body: JSON.stringify(movie),
+    })
+      .then((response) => response.json())
+      .catch(() => ({
+        data: [],
+      }));
+  }
+
+  public static async create(movie: MovieModel): Promise<GetMovieResponse> {
+    return fetch(`${this.API_DOMAIN}/movies`, {
+      method: "POST",
+      body: JSON.stringify(movie),
+    })
+      .then((response) => response.json())
+      .catch(() => ({
+        data: [],
+      }));
+  }
+
+  public static async delete(id: string | number): Promise<GetMovieResponse> {
+    return fetch(`${this.API_DOMAIN}/movies/${id}`, { method: "DELETE" })
       .then((response) => response.json())
       .catch(() => ({
         data: [],
