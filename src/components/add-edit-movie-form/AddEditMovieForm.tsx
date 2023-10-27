@@ -19,6 +19,7 @@ export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
     };
   }
 
+  // no need ||
   const initialFormState = mapMovieToFormState(movie) || {
     ...INITIAL_FORM_STATE,
   };
