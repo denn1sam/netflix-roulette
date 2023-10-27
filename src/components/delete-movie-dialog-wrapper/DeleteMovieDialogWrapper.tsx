@@ -17,7 +17,7 @@ export function DeleteMovieDialogWrapper() {
 
   return (
     <DeleteMovieDialog
-      isOpen={true}
+      isOpen
       onClose={(isConfirmed) => handleDeleteDialogClose(isConfirmed)}
     />
   );

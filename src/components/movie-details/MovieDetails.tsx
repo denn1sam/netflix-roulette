@@ -15,7 +15,7 @@ export function MovieDetails({ movie }: MovieDetailsProps) {
 
   return (
     <div className="movie-details">
-      <PageTitle isDetailsView={true} />
+      <PageTitle isDetailsView />
 
       <div className="movie-details-wrapper">
         <div className="movie-details-image-container">

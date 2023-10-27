@@ -3,7 +3,7 @@ import { GenresEnum, MovieModel } from "../models";
 import { GetMoviePayload, GetMovieResponse } from "./movies-api.interface";
 
 export class MoviesApiService {
-  private static API_DOMAIN = API_DOMAIN;
+  private static API_DOMAIN = process.env['REACT_APP_API_DOMAIN'] || API_DOMAIN;
 
   public static async get(params: GetMoviePayload): Promise<GetMovieResponse> {
     const {
