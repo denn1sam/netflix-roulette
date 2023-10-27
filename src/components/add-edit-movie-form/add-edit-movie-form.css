@@ -15,3 +15,10 @@
 .movie-form-actions {
   grid-column: span 2;
 }
+
+.error-placeholder {
+  color: var(--red);
+  padding: 0;
+  margin: -0.5rem 0;
+  font-size: 0.8rem;
+}

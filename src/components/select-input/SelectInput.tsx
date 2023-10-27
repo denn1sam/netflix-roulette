@@ -43,6 +43,7 @@ export function SelectInput({
         className="select-input-field"
         placeholder={placeholder}
         value={fieldSelectedOptions.map((option) => option.label).join(", ")}
+        onChange={() => null}
         onClick={toggleDropdown}
       />
 
