@@ -24,3 +24,9 @@ button {
   border: 1px solid var(--red);
   background-color: var(--red);
 }
+
+.disabled-button {
+  background-color: var(--grey);
+  color: var(--grey-light);
+  cursor: not-allowed;
+}

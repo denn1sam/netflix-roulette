@@ -1,6 +1,5 @@
 import "./add-edit-movie-form.css";
 import { AddEditMovieFormProps } from "./add-edit-movie-form-props.interface";
-import { FormEvent, useState } from "react";
 import { SelectInput } from "../select-input/SelectInput";
 import {
   GENRES_LIST,
@@ -8,6 +7,8 @@ import {
 } from "./add-edit-movie-form.constants";
 import { MovieModel } from "../../models";
 import { MovieFormModel } from "./add-edit-movie-form.interface";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
   function mapMovieToFormState(movie: MovieModel = {}): MovieFormModel {
@@ -24,30 +25,29 @@ export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
     ...INITIAL_FORM_STATE,
   };
 
-  const [formData, setFormData] = useState({ ...initialFormState });
+  const validationSchema = Yup.object().shape({
+    title: Yup.string().required(),
+    release_date: Yup.date().required(),
+    poster_path: Yup.string()
+      .required()
+      .matches(/https|http/, "Invalid Link"),
+    vote_average: Yup.number().min(0).max(10),
+    runtime: Yup.number(),
+    overview: Yup.string().max(50),
+  });
 
-  function handleChange(event: any) {
-    const { name, value } = event.target;
+  const formik = useFormik({
+    initialValues: initialFormState,
+    onSubmit: (values) => {
+      submitForm(values as MovieModel);
+    },
+    validationSchema,
+  });
 
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  }
-
-  function handleOnSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    console.log(formData);
-    submitForm(formData as MovieModel);
-  }
-
-  function handleOnReset() {
-    setFormData({ ...INITIAL_FORM_STATE });
-  }
+  const isSaveDisabled = !!Object.keys(formik.errors).length;
 
   return (
-    <form className="movie-form" onSubmit={handleOnSubmit}>
+    <form className="movie-form" onSubmit={formik.handleSubmit}>
       <div className="form-field">
         <label htmlFor="title">Title</label>
         <input
@@ -55,10 +55,10 @@ export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
           id="title"
           name="title"
           placeholder="Title"
-          required
-          value={formData.title}
-          onChange={handleChange}
+          value={formik.values.title}
+          onChange={formik.handleChange}
         />
+        <p className="error-placeholder">{formik.errors?.title}</p>
       </div>
 
       <div className="form-field">
@@ -68,9 +68,10 @@ export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
           id="releaseDate"
           name="release_date"
           placeholder="Select Date"
-          value={formData.release_date}
-          onChange={handleChange}
+          value={formik.values.release_date}
+          onChange={formik.handleChange}
         />
+        <p className="error-placeholder">{formik.errors?.release_date}</p>
       </div>
 
       <div className="form-field">
@@ -80,9 +81,10 @@ export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
           id="movieUrl"
           name="poster_path"
           placeholder="https://"
-          value={formData.poster_path}
-          onChange={handleChange}
+          value={formik.values.poster_path}
+          onChange={formik.handleChange}
         />
+        <p className="error-placeholder">{formik.errors?.poster_path}</p>
       </div>
 
       <div className="form-field">
@@ -92,11 +94,10 @@ export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
           id="rating"
           name="vote_average"
           placeholder="0.0"
-          max={10}
-          min={0}
-          value={formData.vote_average}
-          onChange={handleChange}
+          value={formik.values.vote_average}
+          onChange={formik.handleChange}
         />
+        <p className="error-placeholder">{formik.errors?.vote_average}</p>
       </div>
 
       <div className="form-field">
@@ -104,9 +105,9 @@ export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
         <SelectInput
           placeholder="Select Genre"
           options={GENRES_LIST}
-          selectedOptions={formData.genres}
+          selectedOptions={formik.values.genres}
           onSelectionChange={(selectedOptions) =>
-            handleChange({
+            formik.handleChange({
               target: { name: "genres", value: selectedOptions },
             })
           }
@@ -120,8 +121,8 @@ export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
           id="runtime"
           name="runtime"
           placeholder="Minutes"
-          value={formData.runtime}
-          onChange={handleChange}
+          value={formik.values.runtime}
+          onChange={formik.handleChange}
         />
       </div>
 
@@ -132,20 +133,26 @@ export function AddEditMovieForm({ movie, submitForm }: AddEditMovieFormProps) {
           name="overview"
           placeholder="Movie Description"
           rows={7}
-          value={formData.overview}
-          onChange={handleChange}
+          value={formik.values.overview}
+          onChange={formik.handleChange}
         />
+        <p className="error-placeholder">{formik.errors?.overview}</p>
       </div>
 
       <div className="movie-form-actions">
         <button
           type="button"
           className="stroked-button"
-          onClick={handleOnReset}
+          onClick={() => formik.resetForm()}
         >
           Reset
         </button>
-        <button type="submit" className="flat-button">
+        <button
+          type="button"
+          className={`flat-button ${isSaveDisabled && "disabled-button"}`}
+          disabled={isSaveDisabled}
+          onClick={formik.submitForm}
+        >
           Submit
         </button>
       </div>
